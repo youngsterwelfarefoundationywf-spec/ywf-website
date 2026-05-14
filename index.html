@@ -248,11 +248,9 @@ tr:last-child td{border-bottom:none}
     </div>
   </div>
   <div style="position:absolute;bottom:12px;width:100%;text-align:center;font-size:10px;color:rgba(255,255,255,0.15);z-index:1">
-    Developed by <b onclick="showDevPic()" style="cursor:pointer; color:rgba(255,255,255,0.4); text-decoration:underline;">Zahid Hasan</b> &nbsp;·&nbsp; 
-<a href="https://www.facebook.com/zahidhasan.34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Facebook</a> &nbsp;·&nbsp; 
-<a href="https://seeklogo.com/user/zahidhasan-34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Website</a> 
-<a href="https://www.facebook.com/zahidhasan.34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Facebook</a> &nbsp;·&nbsp; 
-<a href="https://seeklogo.com/user/zahidhasan-34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Website</a>
+   Developed by <b onclick="showDevPic()" style="cursor:pointer; color:var(--pl); text-decoration:underline;">Zahid Hasan</b> &nbsp;·&nbsp; 
+<a href="https://www.facebook.com/zahidhasan.34" target="_blank" style="color:var(--tm);text-decoration:none"><i class="fa-brands fa-facebook"></i> Facebook</a> &nbsp;·&nbsp; 
+<a href="https://seeklogo.com/user/zahidhasan-34" target="_blank" style="color:var(--tm);text-decoration:none"><i class="fa fa-globe"></i> Website</a>
 </div>
 
 <!-- APP -->
@@ -274,6 +272,14 @@ tr:last-child td{border-bottom:none}
   </aside>
   <main class="main">
     <div class="topbar">
+      function showDevPic() {
+  const imageUrl = "https://enifukjimtnvkwzmervg.supabase.co/storage/v1/object/public/ywf-photos/WhatsApp%20Image%202026-05-05%20at%204.53.15%20AM.jpeg";
+  const viewer = document.createElement('div');
+  viewer.style = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;cursor:pointer;";
+  viewer.innerHTML = `<img src="${imageUrl}" style="max-width:80%;max-height:80%;border:3px solid var(--pl);border-radius:12px;box-shadow:0 0 25px rgba(0,0,0,0.5);">`;
+  viewer.onclick = () => viewer.remove();
+  document.body.appendChild(viewer);
+}
       <div><div class="ttitle" id="topTitle">ড্যাশবোর্ড</div><div class="tsub">Youngster Welfare Foundation</div></div>
       <div style="display:flex;gap:8px;align-items:center">
         <button class="ltog" onclick="toggleLang()" id="langBtn">EN</button>

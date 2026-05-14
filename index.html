@@ -220,9 +220,7 @@ tr:last-child td{border-bottom:none}
   <div class="login-grid"></div>
   <div class="ll">
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:40px">
-      <div class="slogo-icon" style="background: transparent; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-  <img id="loginLogo" src="https://enifukjimtnvkwzmervg.supabase.co/storage/v1/object/public/ywf-photos/e7e3698d-46b8-427f-a88c-5fc7c3e94293/logo.jpeg" alt="YWF" style="max-width: 100%; max-height: 100%; object-fit: contain;">
-</div>
+      <div class="slogo-icon" style="width:48px;height:48px;border-radius:13px"><img id="loginLogo" src="" alt="YWF" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-size:18px;font-weight:900\'>YWF</span>'"></div>
       <div><h1 style="font-size:17px;font-weight:900;line-height:1.2">Youngster Welfare<br>Foundation</h1><span style="font-size:10px;color:var(--tm)">Fund Management System</span></div>
     </div>
     <h2 style="font-size:44px;font-weight:900;line-height:1.1;margin-bottom:14px;background:linear-gradient(135deg,#fff,#a8d5bc);-webkit-background-clip:text;-webkit-text-fill-color:transparent">স্বচ্ছ ও<br>নিরাপদ<br>ফান্ড ম্যানেজমেন্ট</h2>
@@ -250,7 +248,7 @@ tr:last-child td{border-bottom:none}
     </div>
   </div>
   <div style="position:absolute;bottom:12px;width:100%;text-align:center;font-size:10px;color:rgba(255,255,255,0.15);z-index:1">
-    Developed by <strong onclick="showDevPic()" style="color:var(--pl); cursor:pointer; font-weight:900; text-decoration:underline;">Zahid Hasan</strong>>Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Website</a>
+    Developed by Zahid Hasan &nbsp;·&nbsp; <a href="https://www.facebook.com/zahidhasan.34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Website</a>
   </div>
 </div>
 
@@ -258,14 +256,12 @@ tr:last-child td{border-bottom:none}
 <div class="app" id="appLayout">
   <aside class="sidebar" id="sidebar">
     <div class="slogo">
-      <div class="slogo-icon" style="background: transparent; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-  <img id="sidebarLogo" src="https://enifukjimtnvkwzmervg.supabase.co/storage/v1/object/public/ywf-photos/e7e3698d-46b8-427f-a88c-5fc7c3e94293/logo.jpeg" alt="YWF" style="width: 100%; height: 100%; object-fit: contain;">
-</div>
+      <div class="slogo-icon"><img id="sidebarLogo" src="" alt="YWF" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-size:14px;font-weight:900\'>YWF</span>'"></div>
       <div class="slogo-text"><h2>Youngster Welfare</h2><span>Foundation</span></div>
     </div>
     <div class="scontact" id="contactBar" style="display:none"><i class="fa fa-phone"></i><span id="contactNum"></span></div>
     <nav class="snav" id="snav"></nav>
-    <div class="sdev">Developed by <strong onclick="showDevPic()" style="color:var(--tm); cursor:pointer; font-weight:900;">Zahid Hasan</strong>><br><a href="https://www.facebook.com/zahidhasan.34" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank"><i class="fa fa-globe"></i> Website</a></div>
+    <div class="sdev">Developed by <strong style="color:var(--tm)">Zahid Hasan</strong><br><a href="https://www.facebook.com/zahidhasan.34" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank"><i class="fa fa-globe"></i> Website</a></div>
     <div class="sfoot">
       <div class="uinfo">
         <div class="uav" id="sidebarAv">U</div>
@@ -561,18 +557,18 @@ async function loadPCount() {
   if (b) { b.style.display = PCOUNT > 0 ? 'inline-block' : 'none'; b.textContent = PCOUNT; }
 }
 
+// NAV
 function go(page) {
-    document.querySelectorAll('.ni').forEach(el => el.classList.remove('active'));
-    const el = document.getElementById('n_' + page);
-    if (el) el.classList.add('active');
-    
-    const titles = {dashboard:'ড্যাশবোর্ড',members:'সদস্যগণ',deposit:'টাকা জমা',requests:'পেমেন্ট রিকোয়েস্ট',investments:'বিনিয়োগ',profits:'লাভ',expenses:'খরচ',reports:'রিপোর্ট'};
-    document.getElementById('topTitle').textContent = titles[page] || page;
-
-    const pages = {dashboard:pgDashboard,members:pgMembers,deposit:pgDeposit,requests:pgRequests,investments:pgInvestments,profits:pgProfits,expenses:pgExpenses};
-    if (pages[page]) pages[page]();
+  document.querySelectorAll('.ni').forEach(el => el.classList.remove('active'));
+  const el = document.getElementById('n_' + page);
+  if (el) el.classList.add('active');
+  const titles = {dashboard:'ড্যাশবোর্ড',members:'সদস্যগণ',deposit:'টাকা জমা',requests:'পেমেন্ট রিকোয়েস্ট',investments:'বিনিয়োগ',profits:'লাভ',expenses:'খরচ',reports:'রিপোর্ট',audit:'অডিট লগ',settings:'সেটিংস',myStatement:'আমার স্টেটমেন্ট',payNow:'পেমেন্ট করুন',memberInv:'বিনিয়োগ ও লাভ',profile:'আমার প্রোফাইল'};
+  document.getElementById('topTitle').textContent = titles[page] || page;
+  const pages = {dashboard:pgDashboard,members:pgMembers,deposit:pgDeposit,requests:pgRequests,investments:pgInvestments,profits:pgProfits,expenses:pgExpenses,reports:pgReports,audit:pgAudit,settings:pgSettings,myStatement:pgMyStatement,payNow:pgPayNow,memberInv:pgMemberInv,profile:pgProfile};
+  if (pages[page]) pages[page]();
 }
-  
+
+// AUTO FINES
 async function checkFines() {
   const now = new Date();
   const day = now.getDate();
@@ -1516,37 +1512,7 @@ function popMY(mId, yId) {
   yel.innerHTML='';
   for(let y=cy-3;y<=cy+1;y++) yel.innerHTML+=`<option value="${y}" ${y===cy?'selected':''}>${y}</option>`;
 }
-function showBigProfile() {
-    if (!CUD) return; // 
 
-    const userPhoto = CUD.photo_url || 'https://via.placeholder.com/150';
-    const userName = CUD.full_name || 'সদস্য';
-    const accNum = CUD.account_number || 'YWF-000000';
-    const logoUrl = "https://enifukjimtnvkwzmervg.supabase.co/storage/v1/object/public/ywf-photos/e7e3698d-46b8-427f-a88c-5fc7c3e94293/logo.jpeg";
-
-    const profileHtml = `
-        <div style="display: flex; align-items: center; justify-content: center; min-height: 80vh; animation: fadeIn 0.6s ease;">
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 50px; text-align: center; max-width: 450px; width: 100%; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
-                
-                <div style="width: 200px; height: 200px; margin: 0 auto 25px; border-radius: 50%; border: 6px solid var(--pl); overflow: hidden; box-shadow: 0 10px 25px rgba(26,122,69,0.3);">
-                    <img src="${userPhoto}" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-
-                <h1 style="font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 5px;">${userName}</h1>
-                <div style="font-size: 14px; color: var(--tm); margin-bottom: 30px; letter-spacing: 1px;">${accNum}</div>
-
-                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 25px;">
-
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                    <img src="${logoUrl}" style="height: 35px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));">
-                    <div style="font-size: 12px; font-weight: 800; color: var(--pl); letter-spacing: 3px; text-transform: uppercase;">Youngster Welfare Foundation</div>
-                </div>
-            </div>
-        </div>
-    `;
-
-    document.getElementById('mainContent').innerHTML = profileHtml;
-}
 async function log(action, tbl, rid, data) {
   await db.from('ywf_audit_logs').insert({admin_id:CUD.id,admin_name:CUD.full_name,action,table_name:tbl,record_id:rid,new_data:data});
 }
@@ -1566,32 +1532,7 @@ function mb(method) {
   const [c,l]=m[method]||['var(--tm)',method||'—'];
   return `<span style="color:${c};font-size:12px;font-weight:600">${l}</span>`;
 }
-async function showBigProfile() {
-    if (!CUD) return; 
 
-    const userPhoto = CUD.photo_url || 'https://via.placeholder.com/150';
-    const userName = CUD.full_name || 'সদস্য';
-    const accNum = CUD.account_number || 'YWF-000000';
-    const logoUrl = "https://enifukjimtnvkwzmervg.supabase.co/storage/v1/object/public/ywf-photos/e7e3698d-46b8-427f-a88c-5fc7c3e94293/logo.jpeg";
-
-    const profileHtml = `
-        <div style="display: flex; align-items: center; justify-content: center; min-height: 80vh; animation: fadeIn 0.6s ease;">
-            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; padding: 50px; text-align: center; max-width: 450px; width: 100%; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
-                <div style="width: 180px; height: 180px; margin: 0 auto 25px; border-radius: 50%; border: 6px solid var(--pl); overflow: hidden; box-shadow: 0 10px 25px rgba(26,122,69,0.3);">
-                    <img src="${userPhoto}" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <h1 style="font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 5px;">${userName}</h1>
-                <div style="font-size: 14px; color: var(--tm); margin-bottom: 30px; letter-spacing: 1px;">${accNum}</div>
-                <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin-bottom: 25px;">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                    <img src="${logoUrl}" style="height: 35px; width: auto;">
-                    <div style="font-size: 11px; font-weight: 800; color: var(--pl); letter-spacing: 3px; text-transform: uppercase;">Youngster Welfare Foundation</div>
-                </div>
-            </div>
-        </div>
-    `;
-    document.getElementById('mainContent').innerHTML = profileHtml;
-}
 function catB(cat) {
   const m={bank_charge:'ব্যাংক চার্জ',maintenance:'রক্ষণাবেক্ষণ',other:'অন্যান্য'};
   return `<span class="badge bgm">${m[cat]||'অন্যান্য'}</span>`;

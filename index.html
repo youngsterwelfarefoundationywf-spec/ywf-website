@@ -250,7 +250,7 @@ tr:last-child td{border-bottom:none}
     </div>
   </div>
   <div style="position:absolute;bottom:12px;width:100%;text-align:center;font-size:10px;color:rgba(255,255,255,0.15);z-index:1">
-    Developed by Zahid Hasan &nbsp;·&nbsp; <a href="https://www.facebook.com/zahidhasan.34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Website</a>
+    Developed by <strong onclick="showDevPic()" style="color:var(--pl); cursor:pointer; font-weight:900; text-decoration:underline;">Zahid Hasan</strong>>Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank" style="color:rgba(255,255,255,0.25);text-decoration:none">Website</a>
   </div>
 </div>
 
@@ -265,7 +265,7 @@ tr:last-child td{border-bottom:none}
     </div>
     <div class="scontact" id="contactBar" style="display:none"><i class="fa fa-phone"></i><span id="contactNum"></span></div>
     <nav class="snav" id="snav"></nav>
-    <div class="sdev">Developed by <strong style="color:var(--tm)">Zahid Hasan</strong><br><a href="https://www.facebook.com/zahidhasan.34" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank"><i class="fa fa-globe"></i> Website</a></div>
+    <div class="sdev">Developed by <strong onclick="showDevPic()" style="color:var(--tm); cursor:pointer; font-weight:900;">Zahid Hasan</strong>><br><a href="https://www.facebook.com/zahidhasan.34" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank"><i class="fa fa-globe"></i> Website</a></div>
     <div class="sfoot">
       <div class="uinfo">
         <div class="uav" id="sidebarAv">U</div>
@@ -1565,7 +1565,35 @@ function toggleLang() {
 document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{ if(e.target===o) o.classList.remove('show'); }));
 document.getElementById('lPass').addEventListener('keypress',e=>{ if(e.key==='Enter') doLogin(); });
 
-init();
+init();function showDevPic() {
+
+    const imageUrl = "https://enifukjimtnvkwzmervg.supabase.co/storage/v1/object/public/ywf-photos/WhatsApp%20Image%202026-05-05%20at%204.53.15%20AM.jpeg";
+
+    
+
+    const viewer = document.createElement('div');
+
+    viewer.style = "position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:99999;cursor:pointer;";
+
+    
+
+    viewer.innerHTML = `<img src="${imageUrl}" style="max-width:80%;max-height:80%;border:3px solid var(--pl);border-radius:12px;box-shadow:0 0 25px rgba(0,0,0,0.5);">`;
+
+    
+
+    viewer.onclick = () => viewer.remove();
+
+    document.body.appendChild(viewer);
+
+}
+
+
+
+</script>
+
+</body>
+
+</html>
 </script>
 </body>
 </html>

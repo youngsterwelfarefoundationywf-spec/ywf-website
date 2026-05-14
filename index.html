@@ -123,10 +123,8 @@ tr:last-child td{border-bottom:none}
 .rtabs{display:flex;background:rgba(255,255,255,0.04);border-radius:var(--rs);padding:3px;margin-bottom:22px;gap:3px}
 .rtab{flex:1;padding:8px;text-align:center;font-size:12px;font-weight:600;cursor:pointer;border-radius:8px;transition:all 0.2s;color:var(--tm);font-family:var(--f);border:none;background:transparent}
 .rtab.active{background:var(--pl);color:white}
-<div class="sidebar-header" style="display: flex; align-items: center; gap: 10px; padding: 20px;">
-    <img src="logo.png" alt="Logo" style="height: 40px; width: 40px; object-fit: contain; border-radius: 6px;">
-    <h2 style="font-size: 20px;">YWF</h2>
-</div>
+.lerr{background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.3);color:#ff6b7a;padding:9px 13px;border-radius:var(--rs);font-size:12px;margin-bottom:12px;display:none}
+
 /* SIDEBAR */
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:240px;background:var(--bg2);border-right:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;z-index:100}
 .slogo{padding:18px 16px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:10px}
@@ -221,19 +219,12 @@ tr:last-child td{border-bottom:none}
   <div class="login-bg"></div>
   <div class="login-grid"></div>
   <div class="ll">
-
-<div style="display:flex; align-items:center; gap:15px; margin-bottom:40px; padding: 5px;">
-    <div style="width:55px; height:55px; border-radius:12px; overflow:hidden; background:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <img src="https://enifukjimtnvkwzmervg.supabase.co/storage/v1/object/public/ywf-photos/e7e3698d-46b8-427f-a88c-5fc7c3e94293/logo.jpeg" alt="YWF Logo" style="width:90%; height:90%; object-fit:contain;">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:40px">
+      <div class="slogo-icon" style="width:48px;height:48px;border-radius:13px"><img id="loginLogo" src="" alt="YWF" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-size:18px;font-weight:900\'>YWF</span>'"></div>
+      <div><h1 style="font-size:17px;font-weight:900;line-height:1.2">Youngster Welfare<br>Foundation</h1><span style="font-size:10px;color:var(--tm)">Fund Management System</span></div>
     </div>
-    
-    <div style="display:flex; flex-direction:column; justify-content:center;">
-        <h1 style="font-size:18px; font-weight:800; line-height:1.2; margin:0; color:#fff;">Youngster Welfare<br>Foundation</h1>
-        <span style="font-size:11px; color:rgba(255,255,255,0.7); margin-top:2px;">Fund Management System</span>
-    </div>
-</div>
-
-    
+    <h2 style="font-size:44px;font-weight:900;line-height:1.1;margin-bottom:14px;background:linear-gradient(135deg,#fff,#a8d5bc);-webkit-background-clip:text;-webkit-text-fill-color:transparent">স্বচ্ছ ও<br>নিরাপদ<br>ফান্ড ম্যানেজমেন্ট</h2>
+    <p style="font-size:14px;color:var(--tm);line-height:1.7;max-width:360px">আপনার সঞ্চয় সুরক্ষিত রাখুন। প্রতিটি লেনদেন ট্র্যাক করুন।</p>
     <div style="display:flex;gap:24px;margin-top:36px">
       <div><div style="font-size:26px;font-weight:800;color:var(--a)">৩০</div><div style="font-size:10px;color:var(--tm);margin-top:2px">সদস্য</div></div>
       <div><div style="font-size:26px;font-weight:800;color:var(--a)">১০০%</div><div style="font-size:10px;color:var(--tm);margin-top:2px">স্বচ্ছতা</div></div>

@@ -568,10 +568,13 @@ function go(page) {
   if (el) el.classList.add('active');
   const titles = {dashboard:'ড্যাশবোর্ড',members:'সদস্যগণ',deposit:'টাকা জমা',requests:'পেমেন্ট রিকোয়েস্ট',investments:'বিনিয়োগ',profits:'লাভ',expenses:'খরচ',reports:'রিপোর্ট',audit:'অডিট লগ',settings:'সেটিংস',myStatement:'আমার স্টেটমেন্ট',payNow:'পেমেন্ট করুন',memberInv:'বিনিয়োগ ও লাভ',profile:'আমার প্রোফাইল'};
   document.getElementById('topTitle').textContent = titles[page] || page;
-  const pages = {dashboard:pgDashboard,members:pgMembers,deposit:pgDeposit,requests:pgRequests,investments:pgInvestments,profits:pgProfits,expenses:pgExpenses,reports:pgReports,audit:pgAudit,settings:pgSettings,myStatement:pgMyStatement,payNow:pgPayNow,memberInv:pgMemberInv,profile:pgProfile};
-  if (page === 'profile') {
+  const pages = {dashboard:pgDashboard,members:pgMembers,deposit:pgDeposit,requests:pgRequests,investments:pgInvestments,profits:pgProfits,expenses:pgExpenses};
+  
+    if (page === 'profile') {
         showBigProfile();
         return;
+    }
+
     if (pages[page]) pages[page]();
 }
 

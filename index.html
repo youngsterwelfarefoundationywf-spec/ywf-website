@@ -643,7 +643,7 @@ async function pgDashboard() {
       ${sc('g','fa-piggy-bank','মোট জমা (চাঁদা)','৳'+fmt(totDep),'শুধু সদস্যদের চাঁদা')}
       ${sc('b','fa-chart-line','মোট বিনিয়োগ','৳'+fmt(totInv),invs.filter(i=>i.status==='active').length+' টি সক্রিয়')}
       ${sc('y','fa-arrow-trend-up','মোট লাভ','৳'+fmt(totProf),'বিনিয়োগ থেকে আয়')}
-${sc('r', 'fa-exclamation-triangle', 'মোট জরিমানা', '৳' + fmt(totFine), 'সব সদস্যের জরিমানা ' + (totFine > 0 ? `<a href="#" onclick="go(\'pay-fine\')" style="color:var(--a); font-weight:bold; margin-left:5px;">[জরিমানা দিন]</a>` : ''))}    </div>
+${sc('r', 'fa-exclamation-triangle', 'মোট জরিমানা', '৳' + fmt(totFine), 'সব সদস্যের জরিমানা ' + (totFine > 0 ? `<a href="#" onclick="go(\'pay-fine\')" style="color:var(--a); font-weight:bold; margin-left:5px;">[জরিমানা দিন]</a>` : ''))} </div>
     <div class="g4" style="margin-bottom:16px">
       ${sc('r','fa-receipt','মোট খরচ','৳'+fmt(totExp),'সব ব্যয়')}
       ${sc(netBal>=0?'g':'r','fa-balance-scale','নিট ব্যালেন্স','৳'+fmt(Math.abs(netBal)),'লাভ+জরিমানা-খরচ')}
@@ -1581,8 +1581,8 @@ function toggleLang() {
 }
 
 // Close modal on overlay click
-document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{ if(e.target===o) o.classList.remove('show'); }));
-document.getElementById('lPass').addEventListener('keypress',e=>{ if(e.key==='Enter') doLogin(); });
+document.querySelectorAll('.mo').forEach(o => o.addEventListener('click', e => { if(e.target === o) o.classList.remove('show'); }));
+document.getElementById('lPass').addEventListener('keypress', e => { if(e.key === 'Enter') doLogin(); });
 
 init();
 </script>

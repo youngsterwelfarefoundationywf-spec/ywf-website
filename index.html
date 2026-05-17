@@ -211,14 +211,8 @@ tr:last-child td{border-bottom:none}
 </head>
 <body>
 
-<div id="loadingOverlay" style="text-align:center;">
-    <div class="sp"></div>
-    <div style="color:var(--tm); font-size:12px;">
-        লোড হচ্ছে...<br>
-        Please wait for a few minutes.<br>
-        <b>Created by: Zahid Hasan</b>
-    </div>
-</div>
+<div id="loadingOverlay"><div class="sp"></div><div style="color:var(--tm);font-size:12px">লোড হচ্ছে...</div></div>
+<div id="toastBox"></div>
 
 <!-- LOGIN -->
 <div class="login-page" id="loginPage" style="display:none">
@@ -267,7 +261,7 @@ tr:last-child td{border-bottom:none}
     </div>
     <div class="scontact" id="contactBar" style="display:none"><i class="fa fa-phone"></i><span id="contactNum"></span></div>
     <nav class="snav" id="snav"></nav>
-   <div class="sdev">Developed by <strong style="color:var(--tm)">Zahid Hasan</strong><br><a href="https://www.facebook.com/zahidhasan.34" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank"><i class="fa fa-globe"></i> Website</a></div>
+    <div class="sdev">Developed by <strong style="color:var(--tm)">Zahid Hasan</strong><br><a href="https://www.facebook.com/zahidhasan.34" target="_blank"><i class="fa fa-facebook"></i> Facebook</a> &nbsp;·&nbsp; <a href="https://seeklogo.com/user/zahidhasan-34" target="_blank"><i class="fa fa-globe"></i> Website</a></div>
     <div class="sfoot">
       <div class="uinfo">
         <div class="uav" id="sidebarAv">U</div>
@@ -546,32 +540,21 @@ async function loadSettings() {
   if (s.admin_contact) {
     document.getElementById('contactBar').style.display = 'flex';
     document.getElementById('contactNum').textContent = s.admin_contact;
-if (!data) return;
-const s = {};
-data.forEach(r => s[r.key] = r.value || '');
-
-if (s.admin_contact) {
-    const contactBar = document.getElementById('contactBar');
-    const contactNum = document.getElementById('contactNum');
-    if (contactBar) contactBar.style.display = 'flex';
-    if (contactNum) contactNum.textContent = s.admin_contact;
-// লোগো চেক এবং সেট করার অংশ
-if (s && s.logo_url && s.logo_url.trim() !== '') {
-    ['loginLogo', 'sidebarLogo'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.src = s.logo_url;
+  }
+  if (s.logo_url) {
+    ['loginLogo','sidebarLogo'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.src = s.logo_url;
     });
+  }
 }
 
 async function loadPCount() {
-    if (ROLE === 'member') return;
-    const { count } = await db.from('ywf_payment_requests').select('*', { count: 'exact', head: true }).eq('status', 'pending');
-    PCOUNT = count || 0;
-    const b = document.getElementById('reqBadge');
-    if (b) { 
-        b.style.display = PCOUNT > 0 ? 'inline-block' : 'none'; 
-        b.textContent = PCOUNT; 
-    }
+  if (ROLE === 'member') return;
+  const { count } = await db.from('ywf_payment_requests').select('*',{count:'exact',head:true}).eq('status','pending');
+  PCOUNT = count || 0;
+  const b = document.getElementById('reqBadge');
+  if (b) { b.style.display = PCOUNT > 0 ? 'inline-block' : 'none'; b.textContent = PCOUNT; }
 }
 
 // NAV
@@ -636,7 +619,8 @@ async function pgDashboard() {
       ${sc('g','fa-piggy-bank','মোট জমা (চাঁদা)','৳'+fmt(totDep),'শুধু সদস্যদের চাঁদা')}
       ${sc('b','fa-chart-line','মোট বিনিয়োগ','৳'+fmt(totInv),invs.filter(i=>i.status==='active').length+' টি সক্রিয়')}
       ${sc('y','fa-arrow-trend-up','মোট লাভ','৳'+fmt(totProf),'বিনিয়োগ থেকে আয়')}
-${sc('r', 'fa-exclamation-triangle', 'মোট জরিমানা', '৳' + fmt(totFine), 'সব সদস্যের জরিমানা ' + (totFine > 0 ? `<a href="#" onclick="go(\'pay-fine\')" style="color:var(--a); font-weight:bold; margin-left:5px;">[জরিমানা দিন]</a>` : ''))} </div>
+      ${sc('r','fa-exclamation-triangle','মোট জরিমানা','৳'+fmt(totFine),'সব সদস্যের জরিমানা')}
+    </div>
     <div class="g4" style="margin-bottom:16px">
       ${sc('r','fa-receipt','মোট খরচ','৳'+fmt(totExp),'সব ব্যয়')}
       ${sc(netBal>=0?'g':'r','fa-balance-scale','নিট ব্যালেন্স','৳'+fmt(Math.abs(netBal)),'লাভ+জরিমানা-খরচ')}
@@ -655,26 +639,17 @@ ${sc('r', 'fa-exclamation-triangle', 'মোট জরিমানা', '৳' + 
         <div id="recentTxns"><div class="sp" style="margin:20px auto"></div></div>
       </div>
     </div>
-  );
+  `);
+  loadRecentTxns();
 }
-async function loadRecentTxns() {
-    const { data } = await db.from('ywf_transactions').select('*,m:member_id(full_name)').order('created_at', {ascending:false}).limit(6);
-    const el = document.getElementById('recentTxns');
-    if (!el) return;
 
-    el.innerHTML = (data || []).map(t => {
-        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
-            <div>
-                <div style="font-size:13px;font-weight:600">${t.m?.full_name || '—'}</div>
-                <div style="font-size:11px;color:var(--tm)">${t.month_name || '—'} · ${fd(t.created_at)}</div>
-            </div>
-            <div style="text-align:right">
-                <div style="font-size:13px;font-weight:700;color:${t.type === 'fine' ? 'var(--d)' : 'var(--s)'}">৳${fmt(t.amount)}</div>
-                <div>${tb(t.type)}</div>
-            </div>
-        </div>`;
-    }).join('') || '<div class="empty"><i class="fa fa-list"></i><p>কোনো লেনদেন নেই</p></div>';
+async function loadRecentTxns() {
+  const { data } = await db.from('ywf_transactions').select('*,m:member_id(full_name)').order('created_at',{ascending:false}).limit(6);
+  const el = document.getElementById('recentTxns');
+  if (!el) return;
+  el.innerHTML = (data||[]).map(t=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04)"><div><div style="font-size:13px;font-weight:600">${t.m?.full_name||'—'}</div><div style="font-size:11px;color:var(--tm)">${t.month_name||'—'} · ${fd(t.created_at)}</div></div><div style="text-align:right"><div style="font-size:13px;font-weight:700;color:${t.type==='fine'?'var(--d)':'var(--s)'}">৳${fmt(t.amount)}</div><div>${tb(t.type)}</div></div></div>`).join('') || '<div class="empty"><i class="fa fa-list"></i><p>কোনো লেনদেন নেই</p></div>';
 }
+
 function sc(col, icon, label, val, sub) {
   return `<div class="sc"><div class="si ${col}"><i class="fa ${icon}"></i></div><div class="sl">${label}</div><div class="sv">${val}</div><div class="ss">${sub}</div></div>`;
 }
@@ -1583,8 +1558,8 @@ function toggleLang() {
 }
 
 // Close modal on overlay click
-document.querySelectorAll('.mo').forEach(o => o.addEventListener('click', e => { if(e.target === o) o.classList.remove('show'); }));
-document.getElementById('lPass').addEventListener('keypress', e => { if(e.key === 'Enter') doLogin(); });
+document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',e=>{ if(e.target===o) o.classList.remove('show'); }));
+document.getElementById('lPass').addEventListener('keypress',e=>{ if(e.key==='Enter') doLogin(); });
 
 init();
 </script>

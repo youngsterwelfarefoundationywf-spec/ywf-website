@@ -665,14 +665,24 @@ ${sc('r', 'fa-exclamation-triangle', 'মোট জরিমানা', '৳' + 
   );
   loadRecentTxns();
 }
-
 async function loadRecentTxns() {
-  const { data } = await db.from('ywf_transactions').select('*,m:member_id(full_name)').order('created_at',{ascending:false}).limit(6);
-  const el = document.getElementById('recentTxns');
-  if (!el) return;
-  el.innerHTML = (data||[]).map(t=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04)"><div><div style="font-size:13px;font-weight:600">${t.m?.full_name||'—'}</div><div style="font-size:11px;color:var(--tm)">${t.month_name||'—'} · ${fd(t.created_at)}</div></div><div style="text-align:right"><div style="font-size:13px;font-weight:700;color:${t.type==='fine'?'var(--d)':'var(--s)'}">৳${fmt(t.amount)}</div><div>${tb(t.type)}</div></div></div>`).join('') || '<div class="empty"><i class="fa fa-list"></i><p>কোনো লেনদেন নেই</p></div>';
-}
+    const { data } = await db.from('ywf_transactions').select('*,m:member_id(full_name)').order('created_at', {ascending:false}).limit(6);
+    const el = document.getElementById('recentTxns');
+    if (!el) return;
 
+    el.innerHTML = (data || []).map(t => {
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.04)">
+            <div>
+                <div style="font-size:13px;font-weight:600">${t.m?.full_name || '—'}</div>
+                <div style="font-size:11px;color:var(--tm)">${t.month_name || '—'} · ${fd(t.created_at)}</div>
+            </div>
+            <div style="text-align:right">
+                <div style="font-size:13px;font-weight:700;color:${t.type === 'fine' ? 'var(--d)' : 'var(--s)'}">৳${fmt(t.amount)}</div>
+                <div>${tb(t.type)}</div>
+            </div>
+        </div>`;
+    }).join('') || '<div class="empty"><i class="fa fa-list"></i><p>কোনো লেনদেন নেই</p></div>';
+}
 function sc(col, icon, label, val, sub) {
   return `<div class="sc"><div class="si ${col}"><i class="fa ${icon}"></i></div><div class="sl">${label}</div><div class="sv">${val}</div><div class="ss">${sub}</div></div>`;
 }

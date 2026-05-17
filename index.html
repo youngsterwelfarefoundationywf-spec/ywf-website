@@ -661,7 +661,8 @@ ${sc('r', 'fa-exclamation-triangle', 'মোট জরিমানা', '৳' + 
         <div class="ch"><div class="ct">সাম্প্রতিক লেনদেন</div><button class="btn bg bsm" onclick="go('reports')">সব দেখুন</button></div>
         <div id="recentTxns"><div class="sp" style="margin:20px auto"></div></div>
       </div>
-  `);
+    </div>
+  );
 }
 async function loadRecentTxns() {
     const { data } = await db.from('ywf_transactions').select('*,m:member_id(full_name)').order('created_at', {ascending:false}).limit(6);
